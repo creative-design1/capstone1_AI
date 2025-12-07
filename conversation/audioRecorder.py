@@ -102,7 +102,7 @@ class AudioRecorder(threading.Thread):
                     
                     if data:
                         if self.mute:
-                            print("mute = true")
+                            #print("mute = true")
                             data = None
                             continue
                         # 데이터 수신 성공! NumPy 변환 및 큐에 삽입 (기존 로직 유지)

@@ -93,6 +93,7 @@ def process_daily_text(model, tokenizer, device, daily_texts):
     for i, text in enumerate(daily_texts):
         # 1. 로드된 모델 객체를 사용하여 예측 함수 호출
         score = predict_depression_score(text, model, tokenizer, device)
+        print(score)
         all_scores.append(score)
         print(f"[{i+1}/{len(daily_texts)}] '{text[:30]}...' -> 점수: {score:.4f}")
     

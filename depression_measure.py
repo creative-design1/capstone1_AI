@@ -39,9 +39,10 @@ class depressionProcessor(threading.Thread):
                 )
                 depression_avg_score = depression_avg_score * 100.0
                 data = {
-                    "elderyUserId": 1,
-                    "depression_score": depression_avg_score
+                    "userId": 4,
+                    "depressionScore": depression_avg_score
                 }
+                print("우울증 점수 전송: ", data)
                 self.sender.send(data)
                 print(f"우울증 전송 완료 우울증 점수: {depression_avg_score:.4f}")
             

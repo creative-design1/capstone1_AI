@@ -31,8 +31,8 @@ def compute_features(seq, fps):
     velocity = stride_velocity(seq, fps)
     
     return {
-        "stride_mean": float(mean_length),
-        "stride_std": float(std_length),
-        "velocity": float(velocity)
+        "stride_mean": round(float(mean_length), 5),
+        "stride_std": round(float(std_length), 5),
+        "velocity": round(float(velocity), 5)
     }
     

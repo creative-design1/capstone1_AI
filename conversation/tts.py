@@ -85,6 +85,7 @@ class TTS(threading.Thread):
                 text = self.queue.get(timeout=0.5)
             except queue.Empty:
                 continue
+            self.recorder.set_mute(True)
             print("TTS ->", text)
             self._speak(text)
             self.queue.task_done()

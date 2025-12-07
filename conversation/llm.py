@@ -19,7 +19,7 @@ class LLM:
             
             try:
                 data = {
-                    "elderyUserId": 1,
+                    "elderlyUserId": 4,
                     "text": text,
                     "isUser": True,
                     "timestamp": "2025-12-05"
