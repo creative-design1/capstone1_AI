@@ -28,7 +28,7 @@ class ChatBot:
         
         print("ChatBot: 모든 내부 컴포넌트 스레드 시작 완료.")
         # 이 메서드는 이제 즉시 메인 스레드로 제어를 반환합니다.
-        
+        #self.llm.reply_queue.put_nowait("음량 테스트용 문장입니다. 적절한 음량으로 설정해 주세요")
         
     def is_alive(self):
         """내부 스레드 중 하나라도 살아있는지 확인합니다."""

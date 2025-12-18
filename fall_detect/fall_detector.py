@@ -197,7 +197,7 @@ class FallDetectionWorker(threading.Thread):
             if fall_detected:
                 if not sent_fall:
                     data = {
-                        "elderlyUserId": 1,
+                        "elderlyUserId": 4,
                         "fall_prob": fall_prob,
                         "fall_detected": fall_detected,
                         "detectedAt": current_time
@@ -215,13 +215,13 @@ class FallDetectionWorker(threading.Thread):
                 # features 딕셔너리가 유효한지 확인하고 전송
                 if "stride_mean" in features:
                     stride_features = {
-                        "elderyUserId": 1,
+                        "elderlyUserId": 4,
                         "stride_mean": features["stride_mean"],
                         "stride_std": features["stride_std"],
                         "velocity": features["velocity"]
                     }
                     self.stride_sender.send(stride_features) # 실제 전송 로직 활성화
-                    print(f"[FallWorker] Walking analysis: Velocity: {features['velocity']:.2f}")
+                    print(f"[FallWorker] Walking analysis: mean: {features["stride_mean"]:.2f} Velocity: {features['velocity']:.2f}")
                 sent_fall = False
             # cv2.waitKey는 GUI가 필요하며 스레드 내에서는 생략하거나 최소화해야 합니다.
             # 하지만 영상 스트리밍 속도 조절을 위해 time.sleep()을 사용할 수 있습니다.

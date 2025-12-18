@@ -27,7 +27,7 @@ class STT:
         self.sample_rate = sample_rate
         self.recorder = recorder
         
-        self.vad = webrtcvad.Vad(2)  # 민감도 높임
+        self.vad = webrtcvad.Vad(1)  # 민감도 높임
         self.frame_ms = 20
         self.frame_size = int(self.sample_rate * self.frame_ms / 1000)
 
@@ -35,9 +35,9 @@ class STT:
         self.silence_count = 0
         self.speech_count = 0
         
-        self.silence_limit = int(0.7 / (self.frame_ms / 1000))  # 1초 침묵이면 문장 끝
+        self.silence_limit = int(0.2 / (self.frame_ms / 1000))  # 1초 침묵이면 문장 끝
         
-        self.min_length_samples = int(sample_rate * 0.5)
+        self.min_length_samples = int(sample_rate * 0.3)
         
         self.amplitude_threshold = 0.01
         
@@ -45,12 +45,12 @@ class STT:
         
     def is_speech(self, pcm16):
         if len(pcm16) < self.frame_size:
-            print("len false")
+            #print("len false")
             return False
         frame = pcm16[:self.frame_size]
 
         boole = self.vad.is_speech(frame.tobytes(), self.sample_rate)
-        print(boole)
+        #print(boole)
         return boole
         
     def run(self):
@@ -124,7 +124,7 @@ class STT:
                     try: os.remove(tmpname)
                     except: pass
                 print(text)
-                if text and len(text) > 1 and "지니" in text:
+                if text and len(text) > 1 and ("나비" in text or "납이" in text or "나이" in text or "아비" in text or "나위" in text or "라비" in text):
                     self.recorder.set_mute(True)
                     print("STT ->", text)
                     try:

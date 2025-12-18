@@ -16,14 +16,14 @@ def HElloCare():
     fall_detect = FallDetectionWorker(base_url=BASE_URL, video_source=VIDEO_URL)
     chatbot = ChatBot(sender=sender)
     depression = depressionProcessor(queue.Queue(), url=BASE_URL)
-    #spring_remind = SpringData(chatbot.llm.reply_queue, depression.depression_queue, url = WEB_SERVER_URL + "/ws/remind")
+    spring_remind = SpringData(chatbot.llm.reply_queue, depression.depression_queue, url = WEB_SERVER_URL + "/ws/remind")
     #spring_depression = SpringData(chatbot.llm.reply_queue, depression.depression_queue, url = WEB_SERVER_URL + "/ws/depression")
     #spring_remind = SpringData(host = "0.0.0.0", port = 8000, replyqueue = chatbot.llm.reply_queue, depression_queue = depression.depression_queue)
     all_workers = [
         chatbot,      # ChatBot (내부 4개 스레드 시작)
         fall_detect,         # 낙상 감지 및 보행 분석
         depression,   # 우울증 분석
-        #spring_remind,
+        spring_remind,
         #spring_depression # 웹소켓 리스너
     ]
     

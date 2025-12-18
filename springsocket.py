@@ -16,10 +16,23 @@ class SpringData:
         
     def on_message(self, ws, message):
         received_data = json.loads(message)
-        if "reminders" in received_data:
+        if "reminder" in received_data:
             print(received_data)
-            self.reply_queue.put_nowait(received_data["reminders"][1])
+            text = received_data["elderlyProfile"]["name"] + "님"
+            if received_data["reminder"]["title"] == "med":
+                text += " 약 복용 시간입니다."
+            elif received_data["reminder"]["title"] == "ex":
+                text += " 운동 시간입니다."
+            elif received_data["reminder"]["title"] == "out":
+                text += " 외출 시간입니다. 가스 및 전기 차단 하셨을까요?"
+            elif received_data["reminder"]["title"] == "morning":
+                text += " 좋은 아침입니다."
+            elif received_data["reminder"]["title"] == "night":
+                text += " 오늘 하루는 어떠셨나요. 좋은 밤 되세요."
+                
+            self.reply_queue.put_nowait(text)
         else:
+            print(received_data)
             daily_text = received_data["text"]
             self.depression_queue.put_nowait(daily_text)
 

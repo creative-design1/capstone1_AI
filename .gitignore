@@ -13,6 +13,7 @@
 *.png
 *.bin
 *.m4a
+*.avi
 
 # dataset directories
 data/
